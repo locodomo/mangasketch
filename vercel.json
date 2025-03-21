@@ -16,16 +16,6 @@
       "dest": "/api/$1"
     }
   ],
-  "functions": {
-    "api/animate/*.py": {
-      "memory": 1024,
-      "maxDuration": 60
-    },
-    "api/generate-guide/*.ts": {
-      "memory": 1024,
-      "maxDuration": 60
-    }
-  },
   "env": {
     "OPENAI_API_KEY": "@openai-api-key"
   }
