@@ -6,14 +6,14 @@
       "use": "@vercel/next"
     },
     {
-      "src": "scripts/animate.py",
+      "src": "requirements.txt",
       "use": "@vercel/python"
     }
   ],
   "routes": [
     {
-      "src": "/api/animate",
-      "dest": "scripts/animate.py"
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
     }
   ],
   "functions": {
