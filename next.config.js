@@ -3,7 +3,13 @@ const nextConfig = {
   output: 'standalone',
   images: {
     domains: ['storage.googleapis.com', 'locodomo.com', 'oaidalleapiprodscus.blob.core.windows.net'],
-    unoptimized: true
+    unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+    ],
   },
   typescript: {
     ignoreBuildErrors: true
@@ -28,7 +34,10 @@ const nextConfig = {
     }
 
     return config;
-  }
+  },
+  experimental: {
+    serverActions: true,
+  },
 };
 
 module.exports = nextConfig;
