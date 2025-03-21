@@ -1,9 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'standalone',
   images: {
-    domains: ['storage.googleapis.com', 'locodomo.com', 'oaidalleapiprodscus.blob.core.windows.net'],
-    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
@@ -12,32 +9,20 @@ const nextConfig = {
     ],
   },
   typescript: {
-    ignoreBuildErrors: true
+    ignoreBuildErrors: true,
   },
   eslint: {
-    ignoreDuringBuilds: true
+    ignoreDuringBuilds: true,
   },
-  webpack: (config, { isServer }) => {
-    // This will make Webpack ignore the canvas module
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      canvas: false
+  webpack: (config) => {
+    config.resolve.fallback = {
+      ...config.resolve.fallback,
+      fs: false,
+      net: false,
+      tls: false,
     };
-
-    if (!isServer) {
-      config.resolve.fallback = {
-        ...config.resolve.fallback,
-        fs: false,
-        module: false,
-        path: false,
-      };
-    }
-
     return config;
-  },
-  experimental: {
-    serverActions: true,
-  },
-};
+  }
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig
